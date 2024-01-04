@@ -9,7 +9,11 @@ class Node:
 def clear():
     os.system('cls')
 
-def create_linked_list():
+def delete_node(linked_list, index):
+    deleted_node = linked_list.pop(index - 1)
+    return deleted_node
+
+def main():
     linked_list = []
     n = int(input("Masukkan jumlah simpul: "))
 
@@ -69,4 +73,33 @@ def create_linked_list():
         print(f"|{avail}|---|  ", end="")
     print("|0|")
 
-create_linked_list()
+    print("\n-----------------------------\n")
+   # Delete a node
+    delete_index = int(input("Masukkan indeks simpul yang akan dihapus: "))
+    deleted_node = delete_node(linked_list, delete_index)
+
+    # Move the deleted node's information into avail list
+    avail_list.reverse()
+    avail_list.append(delete_index)
+    avail_list.reverse()
+    avail_index = avail_list[-1]
+
+    # Set the avail pointer in the deleted node
+    deleted_node.next_pointer = str(avail_index)
+
+    # Insert the deleted node into the avail list
+    linked_list.insert(avail_index - 1, deleted_node)
+
+    print("Linked list:")
+    print(f"start |{start}|", end="")
+    
+    for info, link in info_link:
+        print(f"---|{info}|{link}|", end="")
+    print("")
+
+    print("\nList avail:")
+    for avail in avail_list:
+        print(f"|{avail}|---|  ", end="")
+    print("|0|")
+
+main()
