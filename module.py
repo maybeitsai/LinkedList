@@ -4,23 +4,24 @@ def clear():
     # Fungsi ini menghapus layar konsol
     os.system('cls')
 
-def print_algoritma(loc, locp, LinkedList, availList):
+def print_algoritma(start, loc, locp, nextPointer, availList):
     # Fungsi ini mencetak algoritma dengan parameter yang diberikan
-    print("\n\nAlgoritma: Del(Info, Link, Start, Avail, Loc, Locp)")
+    print("\nAlgoritma: Del(Info, Link, Start, Avail, Loc, Locp)")
     if locp == 0:
         # Jika locp adalah 0, maka lakukan langkah berikut
         print(f"1. Jika {locp} = 0 --> T. ",
-              f"\n\tStart := {LinkedList[loc - 1][1]}",
-              "\n2. Keluar")
+              f"\n\tStart := {start}",
+              f"\n\tAvail := {loc}",
+              "\n2. Keluar\n")
     else:
         # Jika locp bukan 0, maka lakukan langkah berikut
         print(f"\n1. Jika {locp} = 0 --> F. ",
               f"\n\tLink[{locp}] := Link[{loc}]. *Menghapus simpul N",
-              f"\n\tLink[{locp}] := {LinkedList[locp-1][1]}",
+              f"\n\tLink[{locp}] := {nextPointer[locp - 1]}",
               "\n2. [Mengembalikan simpul terhapus kepada list avail]",
               f"\n\tLink[{loc}] := {availList[1]}",
               f"\n\tAvail := {loc}",
-              "\n3. Keluar")
+              "\n3. Keluar\n")
 
 def split_linked_list(start,nextPointer,value):
     # Fungsi ini memisahkan linked list dan mengembalikan nilai-nilai list dan next pointer
@@ -48,9 +49,3 @@ def display_avail_list(nextPointerAvail):
         if value != 0 :
             print(f"|{value}|---|  ", end="")
     print("|0|\n")
-
-def get_Locp(loc, nextPointer):
-    # Fungsi ini mengambil indeks yang tersedia
-    for index, value in enumerate(nextPointer):
-        if value == loc:
-            return index

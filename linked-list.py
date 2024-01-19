@@ -52,30 +52,55 @@ while True:
     elif askForDelete.upper() == "Y":
         break
     print("Silahkan masukkan ulang")
-
 while True:
-    loc = int(input("Delete indeks: "))
-    locp = get_Locp(loc, nextPointerNonAvail)
+    while True:
+        loc = int(input("Delete indeks : "))
+
+        if loc != 0 and loc != start:
+            for index in range(0,len(nextPointer)):
+                if nextPointer[index] == loc:
+                    locp = index+1
+            valueNonAvail.remove(value[loc-1])
+            nextPointerNonAvail.remove(loc)
+            nextPointer[locp-1]=nextPointer[loc-1]
+            nextPointer[loc-1]=avail
+            LinkedList[loc-1][1] = ""
+            break
+
+        elif loc == start:
+            locp=0
+            start = nextPointerNonAvail[0]
+            nextPointerNonAvail.pop(0)
+            valueNonAvail.pop(0)
+            nextPointer[loc-1]=avail
+            LinkedList[loc-1][1] = ""
+            break
+
+    print("========================================================")
+
+    # Memasukkan indeks yang dihapus kedalam avail
+    nextPointerAvail.insert(0, loc)
+
+    # Menampilkan list non avail dan list avail
+    display_linked_list(start, valueNonAvail, nextPointerNonAvail)
+    display_avail_list(nextPointerAvail)
+
+    # menampilkan algoritma
+    print_algoritma(start, loc, locp, nextPointer, nextPointerAvail)
+
+    print("========================================================")
     
-    if loc != 0 and loc != start:
-        valueNonAvail.remove(value[loc-1])
-        nextPointerNonAvail.remove(loc)
-        break
-    elif loc == start:
-        start = nextPointerNonAvail[0]
-        nextPointerNonAvail.pop(0)
-        valueNonAvail.pop(0)
-        break
+    while True:
+        askForDeleteAgain = input("Apakah anda ingin menghapus simpul lagi (Y/N): ")
+        if askForDeleteAgain.upper() == "N":
+            print("Bye!")
+            sys.exit()
+        elif askForDeleteAgain.upper() == "Y":
+            break
 
-    print('Underflow!')
-print("========================================================")
-
-# Memasukkan indeks yang dihapus kedalam avail
-nextPointerAvail.insert(0, loc)
-
-# Menampilkan list non avail dan list avail
-display_linked_list(start, valueNonAvail, nextPointerNonAvail)
-display_avail_list(nextPointerAvail)
-
-# menampilkan algoritma
-print_algoritma(loc, locp, LinkedList, nextPointerAvail)
+    if start == 0:
+        print("Linked list sudah kosong")
+        print("Underflow!")
+        print("Bye!")
+        sys.exit()
+    
