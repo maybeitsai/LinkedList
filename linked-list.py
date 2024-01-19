@@ -55,6 +55,8 @@ while True:
 
 while True:
     loc = int(input("Delete indeks: "))
+    locp = get_Locp(loc, nextPointerNonAvail)
+    
     if loc != 0 and loc != start:
         valueNonAvail.remove(value[loc-1])
         nextPointerNonAvail.remove(loc)
@@ -64,6 +66,7 @@ while True:
         nextPointerNonAvail.pop(0)
         valueNonAvail.pop(0)
         break
+
     print('Underflow!')
 print("========================================================")
 
@@ -73,3 +76,6 @@ nextPointerAvail.insert(0, loc)
 # Menampilkan list non avail dan list avail
 display_linked_list(start, valueNonAvail, nextPointerNonAvail)
 display_avail_list(nextPointerAvail)
+
+# menampilkan algoritma
+print_algoritma(loc, locp, LinkedList, nextPointerAvail)

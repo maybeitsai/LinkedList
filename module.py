@@ -17,7 +17,7 @@ def print_algoritma(loc, locp, LinkedList, availList):
         print(f"\n1. Jika {locp} = 0 --> F. ",
               f"\n\tLink[{locp}] := Link[{loc}]. *Menghapus simpul N",
               f"\n\tLink[{locp}] := {LinkedList[locp-1][1]}",
-              "\n2. [Mengembalikan simpul terhapus kepada list AVAIl]",
+              "\n2. [Mengembalikan simpul terhapus kepada list avail]",
               f"\n\tLink[{loc}] := {availList[1]}",
               f"\n\tAvail := {loc}",
               "\n3. Keluar")
@@ -48,3 +48,9 @@ def display_avail_list(nextPointerAvail):
         if value != 0 :
             print(f"|{value}|---|  ", end="")
     print("|0|\n")
+
+def get_Locp(loc, nextPointer):
+    # Fungsi ini mengambil indeks yang tersedia
+    for index, value in enumerate(nextPointer):
+        if value == loc:
+            return index
