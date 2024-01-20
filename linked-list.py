@@ -12,6 +12,10 @@ LinkedList = []
 # Mengambil input jumlah simpul dari pengguna
 summary = int(input("Masukkan jumlah simpul: "))
 
+if summary == 0:
+    print("Underflow.")
+    sys.exit()
+
 # Mengisi nilai dan next pointer untuk setiap simpul
 for index in range(1, summary+1):
     nilai = input(f"Masukkan nilai simpul ke-{index}: ")
@@ -75,6 +79,9 @@ while True:
             nextPointer[loc-1]=avail
             LinkedList[loc-1][1] = ""
             break
+
+        elif loc == 0:
+            print("Underflow!")
 
     print("========================================================")
 
